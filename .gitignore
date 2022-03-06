@@ -2,6 +2,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,c++
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,visualstudiocode,c++
 
+#practice c++ file
+prac.cpp
+
 ### C++ ###
 # Prerequisites
 *.d

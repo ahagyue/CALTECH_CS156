@@ -123,7 +123,7 @@ int main() {
         // generation of noisy 'y'
         Matrix<double> y = TargetFunction(x);
 
-        // if you want probabilistic correction due to ignorance of overlapped selection, "y.get_row() / 10" -->  "y.get_row() / 9"
+        // if you want probabilistic correction due to ignoring overlapped selection, "y.get_row() / 10" -->  "y.get_row() / 9"
         for(int i = 0; i < y.get_row() / 10; i++) {
             int selected = dist(gen);
             y(selected, 0) = 1 - y(selected, 0);    // ignore the case of overlapped selection

@@ -506,8 +506,36 @@ inline double Matrix<V>::determinant() const {
 }
 
 template<typename V>
-inline void Matrix<V>::concatenate(const Matrix<V>&, int)
-{
+inline void Matrix<V>::concatenate(const Matrix<V>& nMat, int axis){
+    if(axis == 0) {
+        if(row != nMat.get_row())
+            throw MatrixSizeException("Row number should be same for row concatenation.");
+        
+        Matrix<V> newMat(row, col + nMat.get_col(), 0);
+        for(unsigned i = 0; i < row; i++) {
+            for(unsigned j = 0; j < col; j++) 
+                newMat(i, j) = mat[i][j];
+            for(unsigned j = col; j < col + nMat.get_col(); j++)
+                newMat(i, j) = nMat(i, j - col);
+        }
+        (*this) = newMat;
+    } 
+    else if(axis == 1) {
+        if(col != nMat.get_col())
+            throw MatrixSizeException("Column number should be same for column concatenation.");
+        
+        Matrix<V> newMat(row + nMat.row, col, 0);
+        for(unsigned i = 0; i < col; i++) {
+            for(unsigned j = 0; j < row; j++) 
+                newMat(j, i) = mat[j][i];
+            for(unsigned j = row; j < row + nMat.get_row(); j++)
+                newMat(j, i) = nMat(j - row, i);
+        }
+        (*this) = newMat;
+    } 
+    else {
+        throw MatrixSizeException("Matrix is 2D. You need to reset axis");
+    }
 }
 
 template<typename V>

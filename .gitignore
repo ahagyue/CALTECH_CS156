@@ -5,6 +5,9 @@
 #practice c++ file
 prac.cpp
 
+#.vs file
+.vs/
+
 ### C++ ###
 # Prerequisites
 *.d
